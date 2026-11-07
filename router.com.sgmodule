@@ -1,0 +1,11 @@
+#!name=router.com
+#!desc=Redirects router.com and www.router.com to the default gateway of the current network.
+
+[General]
+force-http-engine-hosts = %APPEND% router.com, www.router.com
+
+[MITM]
+hostname = %INSERT% router.com, www.router.com
+
+[URL Rewrite]
+^https?://(?:www\.)?router\.com(?=[:/?#]|$) http://{{{GATEWAY_ADDRESS}}} 302
