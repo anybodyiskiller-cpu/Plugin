@@ -1,12 +1,10 @@
 name: router.com
-description: Redirects router.com to the configured router address.
-compat_arguments:
-  ROUTER_URL: 'http://192.168.2.1'
-compat_arguments_desc: 'Set ROUTER_URL to the router management URL for your network.'
-url_rewrites:
-  - match: '^https?://(www\.)?router\.com([:/?#]|$)'
-    location: '{{{ROUTER_URL}}}'
-    status_code: 302
+description: Redirects router.com to the current IPv4 default gateway.
+scriptings:
+  - http_request:
+      name: router.com gateway redirect
+      match: '^https?://(www\.)?router\.com([:/?#]|$)'
+      script_url: https://raw.githubusercontent.com/anybodyiskiller-cpu/Plugin/main/router.com.egern.js
 mitm:
   hostnames:
     - router.com
