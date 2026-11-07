@@ -1,0 +1,13 @@
+name: router.com
+description: Redirects router.com to the configured router address.
+compat_arguments:
+  ROUTER_URL: 'http://192.168.2.1'
+compat_arguments_desc: 'Set ROUTER_URL to the router management URL for your network.'
+url_rewrites:
+  - match: '^https?://(www\.)?router\.com([:/?#]|$)'
+    location: '{{{ROUTER_URL}}}'
+    status_code: 302
+mitm:
+  hostnames:
+    - router.com
+    - www.router.com
